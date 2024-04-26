@@ -58,49 +58,54 @@ fn main() {
     println!("reference count = {}", Rc::strong_count(&sun)); // 6 references
     jupiter.details();
 
-    // TODO
+    // Création de Saturn en clonant la référence au soleil pour incrémenter le compteur de références
     let saturn = Planet::Saturn(Rc::clone(&sun));
     println!("reference count = {}", Rc::strong_count(&sun)); // 7 references
     saturn.details();
 
-    // TODO
+    // Création de Uranus en clonant la référence au soleil pour incrémenter le compteur de références  
     let uranus = Planet::Uranus(Rc::clone(&sun));
     println!("reference count = {}", Rc::strong_count(&sun)); // 8 references
     uranus.details();
 
-    // TODO
+    // Création de Neptune en clonant la référence au soleil pour incrémenter le compteur de références
     let neptune = Planet::Neptune(Rc::clone(&sun));
     println!("reference count = {}", Rc::strong_count(&sun)); // 9 references
     neptune.details();
 
     assert_eq!(Rc::strong_count(&sun), 9);
 
+    // Suppression de la référence à Neptune, décrémentant le compteur de références du soleil
     drop(neptune);
     println!("reference count = {}", Rc::strong_count(&sun)); // 8 references
-
+    
+    // Suppression de la référence à Uranus, décrémentant le compteur de références du soleil
     drop(uranus);
     println!("reference count = {}", Rc::strong_count(&sun)); // 7 references
-
+    
+    // Suppression de la référence à Saturn, décrémentant le compteur de références du soleil
     drop(saturn);
     println!("reference count = {}", Rc::strong_count(&sun)); // 6 references
-
+    
+    // Suppression de la référence à Jupiter, décrémentant le compteur de références du soleil
     drop(jupiter);
     println!("reference count = {}", Rc::strong_count(&sun)); // 5 references
-
+    
+    // Suppression de la référence à Mars, décrémentant le compteur de références du soleil
     drop(mars);
     println!("reference count = {}", Rc::strong_count(&sun)); // 4 references
-
-    // TODO
+    
+    // Suppression de la référence à Earth, décrémentant le compteur de références du soleil
     drop(earth);
     println!("reference count = {}", Rc::strong_count(&sun)); // 3 references
-
-    // TODO
+    
+    // Suppression de la référence à Venus, décrémentant le compteur de références du soleil
     drop(venus);
     println!("reference count = {}", Rc::strong_count(&sun)); // 2 references
-
-    // TODO
+    
+    // Suppression de la référence à Mercury, décrémentant le compteur de références du soleil
     drop(mercury);
     println!("reference count = {}", Rc::strong_count(&sun)); // 1 reference
-
+    
     assert_eq!(Rc::strong_count(&sun), 1);
 }
