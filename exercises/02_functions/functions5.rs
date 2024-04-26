@@ -4,7 +4,7 @@
 // hint.
 
 fn main() {
-    let answer:i32 = square(3);
+    let answer = square(3);
     println!("The square of 3 is {}", answer);
 }
 
