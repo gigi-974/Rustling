@@ -1,12 +1,17 @@
 // enums3.rs
+//
 // Address all the TODOs to make the tests pass!
-// Execute `rustlings hint enums3` or use the `hint` watch subcommand for a hint.
+//
+// Execute `rustlings hint enums3` or use the `hint` watch subcommand for a
+// hint.
 
+// Implémentation de l'énumération Message avec les variantes correspondant à l'utilisation dans les tests
 enum Message {
-    ChangeColor((u8, u8, u8)), // ajout de la variante ChangeColor
-    Echo(String), // ajout de la variante Echo
-    Move(Point), // ajout de la variante Move
-    Quit, // ajout de la variante Quit
+    // TODO: implement the message variant types based on their usage below
+    Quit,
+    Echo(String),
+    Move(Point),
+    ChangeColor(u8, u8, u8),
 }
 
 struct Point {
@@ -18,7 +23,7 @@ struct State {
     color: (u8, u8, u8),
     position: Point,
     quit: bool,
-    message: String, // ajout du champ message
+    message: String,
 }
 
 impl State {
@@ -31,7 +36,7 @@ impl State {
     }
 
     fn echo(&mut self, s: String) {
-        self.message = s // assignation à self.message
+        self.message = s
     }
 
     fn move_position(&mut self, p: Point) {
@@ -39,11 +44,12 @@ impl State {
     }
 
     fn process(&mut self, message: Message) {
+        // Implémentation du corps de la méthode process() en utilisant une expression match pour traiter les différentes variantes de Message
         match message {
-            Message::ChangeColor((r, g, b)) => { self.change_color((r, g, b)) },
-            Message::Echo(m) => { self.echo(m) },
-            Message::Move(p) => { self.move_position(p) },
-            Message::Quit => { self.quit() },
+            Message::ChangeColor(r, g, b) => self.color = (r, g, b),
+            Message::Echo(s) => self.message = s,
+            Message::Move(x) => self.position = x,
+            Message::Quit => self.quit = true,
         }
     }
 }
@@ -58,9 +64,10 @@ mod tests {
             quit: false,
             position: Point { x: 0, y: 0 },
             color: (0, 0, 0),
+            message: "hello world".to_string(),
         };
-        state.process(Message::ChangeColor((255, 0, 255)));
-        state.process(Message::Echo(String::from("hello world")));
+        state.process(Message::ChangeColor(255, 0, 255));
+        state.process(Message::Echo(String::from("Hello world!")));
         state.process(Message::Move(Point { x: 10, y: 15 }));
         state.process(Message::Quit);
 
@@ -68,5 +75,6 @@ mod tests {
         assert_eq!(state.position.x, 10);
         assert_eq!(state.position.y, 15);
         assert_eq!(state.quit, true);
+        assert_eq!(state.message, "Hello world!");
     }
 }
