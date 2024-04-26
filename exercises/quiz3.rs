@@ -16,14 +16,17 @@
 
 use std::fmt::Display;
 
+// Généralisation de la struct ReportCard pour prendre un type générique T pour la note
 pub struct ReportCard<T> {
     pub grade: T,
     pub student_name: String,
     pub student_age: u8,
 }
 
+// Ajout de la contrainte Display sur le type générique T pour s'assurer que la note peut être formatée en une chaîne de caractères
 impl<T: Display> ReportCard<T> {
     pub fn print(&self) -> String {
+        // Utilisation du trait Display pour formater la note dans la méthode print()
         format!("{} ({}) - achieved a grade of {}",
             &self.student_name, &self.student_age, &self.grade)
     }
@@ -35,6 +38,7 @@ mod tests {
 
     #[test]
     fn generate_numeric_report_card() {
+        // Changement de la note en une chaîne de caractères "A+" pour vérifier le fonctionnement avec des notes alphabétiques
         let report_card = ReportCard {
             grade: 2.1,
             student_name: "Tom Wriggle".to_string(),
