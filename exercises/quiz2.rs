@@ -29,12 +29,12 @@ pub enum Command {
 mod my_module {
     use super::Command;
 
-    // TODO: Complete the function signature!
+    // Signature de la fonction transformer complétée pour prendre un Vec<(String, Command)> en entrée et renvoyer un Vec<String>
     pub fn transformer(input: Vec<(String, Command)>) -> Vec<String> {
-        // TODO: Complete the output declaration!
+        // Déclaration du vecteur de sortie output de type Vec<String>
         let mut output: Vec<String> = vec![];
         for (string, command) in input.iter() {
-            // TODO: Complete the function body. You can do it!
+            // Implémentation du corps de la fonction transformer
             let s = match command {
                 Command::Uppercase => string.to_uppercase(),
                 Command::Trim => string.trim().into(),
@@ -48,7 +48,7 @@ mod my_module {
 
 #[cfg(test)]
 mod tests {
-    // TODO: What do we need to import to have `transformer` in scope?
+    // Import correct de transformer depuis le module my_module
     use super::my_module::transformer;
     use super::Command;
 
