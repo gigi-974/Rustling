@@ -15,6 +15,7 @@
 
 // Put your function here!
 fn calculate_price_of_apples(quantity: u32) -> u32 {
+    // Utilisation du mot-clé return dans les branches if et else
     if quantity > 40 {
         return quantity * 1
     } else {
