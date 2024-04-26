@@ -8,18 +8,18 @@
 fn main() {
     let data = "Rust is great!".to_string();
 
-    get_char(&data);
+    get_char(&data);  // ajout de & pour passer une référence
 
-    string_uppercase(data);
+    string_uppercase(data);  // suppression de & pour prendre la propriété
 }
 
 // Should not take ownership
-fn get_char(data: &String) -> char {
+fn get_char(data: &String) -> char { // String au lieu de &String
     data.chars().last().unwrap()
 }
 
 // Should take ownership
-fn string_uppercase(mut data: String) {
+fn string_uppercase(mut data: String) {  // &String au lieu de String
     data = data.to_uppercase();
 
     println!("{}", data);
