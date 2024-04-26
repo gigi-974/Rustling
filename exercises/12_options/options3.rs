@@ -11,17 +11,17 @@ let y: Option<Point> = Some(Point { x: 100, y: 200 });
 
 basic
 Copier
+// Utilisation de "ref" dans le bras Some du match pour emprunter une référence à p au lieu de consommer l'Option
 match y {
     Some(ref p) => {
-      // 1. Utilisation de "ref" pour emprunter la référence au lieu de consommer l'Option  
-      println!("Co-ordinates are {},{} ", p.x, p.y)
-    },
-    _ => {
-      // 2. Remplacement de panic! par println! pour éviter de planter le programme
-      println!("no match")  
+        println!("Co-ordinates are {},{} ", p.x, p.y)
+        },
+        // Remplacement de panic! par println! dans le bras _ du match pour éviter de planter le programme
+        _ => {
+        println!("no match")  
+        }
     }
-}
 
-// Le code fonctionne maintenant sans erreur et "y" peut être utilisé ici
-y; 
+    // Utilisation de la variable y après le match pour montrer qu'elle est toujours accessible
+    y; 
 }
